@@ -1,0 +1,903 @@
+
+[00:00:00.000 --> 00:00:03.520]   OK, we can go ahead and get started.
+[00:00:03.520 --> 00:00:08.600]   This is the second half, the post-break half of lecture 2,
+[00:00:08.600 --> 00:00:10.840]   first week.
+[00:00:10.840 --> 00:00:12.880]   So as promised, we're going to compare
+[00:00:12.880 --> 00:00:15.180]   the power of DFAs and NFAs.
+[00:00:15.180 --> 00:00:17.400]   But first, let's talk about some notation
+[00:00:17.400 --> 00:00:20.040]   needed to make that comparison.
+[00:00:20.040 --> 00:00:30.360]   So for any machine, let's say D, we
+[00:00:30.360 --> 00:00:43.920]   define normal script L of D to be the language,
+[00:00:43.920 --> 00:00:55.320]   like the set of strings, accepted or decided by machine
+[00:00:55.320 --> 00:00:58.360]   D. This is a general definition.
+[00:00:58.360 --> 00:01:00.680]   This is beyond DFAs, NFAs for everything.
+[00:01:00.680 --> 00:01:05.200]   This is for any kind of machine.
+[00:01:05.200 --> 00:01:10.960]   So if L of D is equal to L of D prime,
+[00:01:10.960 --> 00:01:13.840]   let's say we have two different machines, however, they accept
+[00:01:13.840 --> 00:01:16.560]   the same set of words, then we would say
+[00:01:16.560 --> 00:01:18.400]   the machines are equivalent.
+[00:01:18.400 --> 00:01:21.200]   So code, you may understand, there
+[00:01:21.200 --> 00:01:23.240]   may be two different pieces of code which
+[00:01:23.240 --> 00:01:24.960]   can do the exact same thing.
+[00:01:24.960 --> 00:01:27.200]   Like they behave the same on all inputs.
+[00:01:27.200 --> 00:01:28.240]   Forget time and all that.
+[00:01:28.240 --> 00:01:31.160]   Just forget-- just care about if they say yes or no
+[00:01:31.160 --> 00:01:34.240]   on the same inputs.
+[00:01:34.240 --> 00:01:36.800]   Two pieces of code can be semantically equivalent,
+[00:01:36.800 --> 00:01:39.080]   but may syntactically be different.
+[00:01:39.080 --> 00:01:58.280]   So D and D prime may look different, but behave
+[00:01:58.280 --> 00:02:01.280]   the same.
+[00:02:01.280 --> 00:02:02.860]   For code, this one's kind of obvious.
+[00:02:02.860 --> 00:02:05.680]   You can just put new lines in or tab it or whatever.
+[00:02:05.680 --> 00:02:07.800]   So different code, same behavior.
+[00:02:07.800 --> 00:02:15.000]   For not a specific machine, but a kind of machine--
+[00:02:26.040 --> 00:02:37.200]   for a kind of machine, let's just say like DFAs,
+[00:02:37.200 --> 00:02:53.160]   we denote the curly L of DFA equal the class of languages
+[00:02:53.160 --> 00:03:02.600]   decidable by DFAs.
+[00:03:02.600 --> 00:03:08.680]   So the L DFA is exactly the regular languages.
+[00:03:08.680 --> 00:03:17.480]   So by definition, L DFA is exactly the regular language.
+[00:03:17.480 --> 00:03:21.920]   The regular languages.
+[00:03:22.760 --> 00:03:41.560]   Now, recall that a language is regular if and only
+[00:03:41.560 --> 00:03:52.720]   if there exists a DFA to decide it.
+[00:03:52.720 --> 00:03:57.520]   So normal script L is the language itself
+[00:03:57.520 --> 00:03:59.440]   of that specific machine.
+[00:03:59.440 --> 00:04:02.600]   Fancy script L is the entire class.
+[00:04:02.600 --> 00:04:05.160]   So the elements of this are words that are accepted,
+[00:04:05.160 --> 00:04:08.800]   and the elements of this are languages.
+[00:04:08.800 --> 00:04:11.760]   So all the regular languages and exactly the regular languages
+[00:04:11.760 --> 00:04:12.760]   are in L DFA.
+[00:04:12.760 --> 00:04:14.440]   L DFA is the class of languages.
+[00:04:14.440 --> 00:04:16.240]   It's a set of languages.
+[00:04:16.240 --> 00:04:20.720]   To each language corresponds one many DFAs.
+[00:04:20.720 --> 00:04:24.960]   We need this notation in order to compare and contrast
+[00:04:24.960 --> 00:04:29.720]   different automata power from each other.
+[00:04:29.720 --> 00:04:50.440]   Since every DFA is an NFA, then the class of languages
+[00:04:50.440 --> 00:04:59.600]   decidable by DFAs also happen to be decidable by NFAs.
+[00:05:05.400 --> 00:05:24.680]   So using this notation, we can say that the NFAs are equal to
+[00:05:24.680 --> 00:05:35.840]   or more powerful than the DFAs.
+[00:05:35.840 --> 00:05:39.280]   So here we have that since every DFA is an NFA,
+[00:05:39.280 --> 00:05:41.520]   there is a-- take any DFA.
+[00:05:41.520 --> 00:05:43.920]   It's going to decide some language.
+[00:05:43.920 --> 00:05:46.040]   That language is going to be an L DFA.
+[00:05:46.040 --> 00:05:48.480]   Then, because that DFA is also an NFA,
+[00:05:48.480 --> 00:05:51.200]   there exists an NFA to decide that same language, which
+[00:05:51.200 --> 00:05:53.480]   is then putting that same language in L NFA.
+[00:05:53.480 --> 00:05:55.320]   So we get a containment one way at least.
+[00:05:55.320 --> 00:05:56.080]   Yes?
+[00:05:56.080 --> 00:06:00.560]   >> What is the meaning of the for each in that line there?
+[00:06:00.560 --> 00:06:01.540]   In the last line?
+[00:06:01.540 --> 00:06:10.360]   Like, recall that a language is regular if and only if for each?
+[00:06:10.360 --> 00:06:13.840]   >> Oh, if and only if there exists a DFA.
+[00:06:13.840 --> 00:06:15.520]   There exists a DFA.
+[00:06:15.520 --> 00:06:16.320]   Yeah.
+[00:06:16.320 --> 00:06:17.680]   I should be more thorough.
+[00:06:17.680 --> 00:06:23.960]   If there exists a DFA to decide it.
+[00:06:23.960 --> 00:06:24.460]   Yeah.
+[00:06:24.460 --> 00:06:28.040]   Right.
+[00:06:28.040 --> 00:06:32.280]   So just a high level proof of this.
+[00:06:32.280 --> 00:06:34.120]   If L is in--
+[00:06:34.120 --> 00:06:35.740]   the statement should be obvious, but I
+[00:06:35.740 --> 00:06:39.040]   want to work through it just so we understand maybe
+[00:06:39.040 --> 00:06:41.500]   some of the mechanics that are involved in proofs like this.
+[00:06:41.500 --> 00:06:49.180]   So if L is an LDFA, then there exists a DFA--
+[00:06:49.180 --> 00:06:59.020]   D to decide L. What that really means
+[00:06:59.020 --> 00:07:04.180]   is that the language decided by D is equal to L.
+[00:07:04.180 --> 00:07:06.940]   So if L is an LDFA, it's regular.
+[00:07:06.940 --> 00:07:08.300]   There exists a DFA for it.
+[00:07:08.300 --> 00:07:08.800]   OK.
+[00:07:08.800 --> 00:07:29.060]   Since every DFA is also an NFA, D is also an NFA.
+[00:07:32.860 --> 00:07:47.780]   So there exists an NFA named D to decide L.
+[00:07:47.780 --> 00:07:57.500]   So L is decidable by an NFA.
+[00:07:57.500 --> 00:08:03.820]   So L is in LNFA.
+[00:08:07.100 --> 00:08:27.100]   Since this is for all L in LDFA, we see that LDFA
+[00:08:27.100 --> 00:08:28.980]   is a subset of LNFA.
+[00:08:28.980 --> 00:08:34.260]   This proof is really, really verbose.
+[00:08:34.260 --> 00:08:35.340]   There's a lot of writing.
+[00:08:35.340 --> 00:08:37.460]   I don't think it's all necessary.
+[00:08:37.460 --> 00:08:40.580]   I think maybe it should be obvious that if something
+[00:08:40.580 --> 00:08:44.620]   was decidable by a DFA, every DFA being an NFA,
+[00:08:44.620 --> 00:08:46.260]   it's also decidable by an NFA.
+[00:08:46.260 --> 00:08:48.220]   I just wanted to be verbose with the proof here,
+[00:08:48.220 --> 00:08:51.900]   show you what one might look like.
+[00:08:51.900 --> 00:08:56.060]   So we now know the NFAs are more powerful than the DFAs.
+[00:08:56.060 --> 00:09:00.980]   But are they strictly more powerful?
+[00:09:00.980 --> 00:09:20.940]   Like, could it be that LDFA is a strict subset of LNFA?
+[00:09:20.940 --> 00:09:28.500]   Could there exist a language?
+[00:09:28.500 --> 00:09:45.700]   Language which is decidable by an NFA,
+[00:09:45.700 --> 00:09:47.860]   but then not decidable by a DFA?
+[00:09:47.860 --> 00:09:59.420]   [STUDENTS TALKING IN BACKGROUND]
+[00:09:59.420 --> 00:10:02.020]   The answer is-- well, let's hear some guesses
+[00:10:02.020 --> 00:10:03.500]   if you guys think this is true.
+[00:10:03.500 --> 00:10:08.500]   Is the NFA computational model strictly more powerful
+[00:10:08.500 --> 00:10:10.100]   than the DFA one?
+[00:10:10.100 --> 00:10:15.660]   We showed that it is more-- it's greater than or equal to.
+[00:10:15.660 --> 00:10:18.260]   But could it be equal to or strictly greater than?
+[00:10:18.260 --> 00:10:22.300]   Greater than.
+[00:10:22.300 --> 00:10:23.220]   Greater than.
+[00:10:23.220 --> 00:10:24.180]   Why?
+[00:10:24.180 --> 00:10:25.580]   I don't know.
+[00:10:25.580 --> 00:10:27.700]   It does seem magical.
+[00:10:27.700 --> 00:10:33.020]   So the gut feeling should be that it does seem stronger.
+[00:10:33.020 --> 00:10:35.180]   However, it's not the case.
+[00:10:35.180 --> 00:10:38.780]   It's actually the case that the DFA--
+[00:10:38.780 --> 00:10:41.020]   the languages decidable by DFAs are
+[00:10:41.020 --> 00:10:45.020]   equivalent to the languages decidable by NFAs.
+[00:10:45.020 --> 00:10:46.860]   So two quick remarks on this.
+[00:10:46.860 --> 00:10:52.140]   One, every DFA is an NFA, but not every NFA is a DFA.
+[00:10:52.140 --> 00:10:55.660]   But there may exist a different DFA.
+[00:10:55.660 --> 00:10:57.300]   We don't care about the program itself.
+[00:10:57.300 --> 00:10:59.300]   We care about the behavior of the program.
+[00:10:59.300 --> 00:11:06.420]   So there may exist another DFA that's equivalent to the NFA.
+[00:11:06.420 --> 00:11:10.860]   That's what we're going to end up doing.
+[00:11:10.860 --> 00:11:13.260]   We already proved the containment one way.
+[00:11:13.260 --> 00:11:15.860]   In order to prove this, we only need to prove the containment
+[00:11:15.860 --> 00:11:16.700]   one the other way.
+[00:11:16.700 --> 00:11:21.540]   L-- NFA.
+[00:11:21.540 --> 00:11:24.340]   Every language is decidable by an NFA.
+[00:11:24.340 --> 00:11:28.340]   We're going to show it's decidable by a DFA.
+[00:11:35.340 --> 00:11:52.980]   Here we conclude that the NFAs are no more powerful
+[00:11:52.980 --> 00:12:10.780]   than the DFAs, and that the NFAs decide exactly
+[00:12:10.780 --> 00:12:14.860]   the regular languages.
+[00:12:19.860 --> 00:12:24.300]   So we're going to convert an NFA into a DFA, basically.
+[00:12:24.300 --> 00:12:25.740]   Yes?
+[00:12:25.740 --> 00:12:28.300]   You can change any NFA into a DFA?
+[00:12:28.300 --> 00:12:30.140]   Yes.
+[00:12:30.140 --> 00:12:32.620]   So again, program-- we don't care about the program.
+[00:12:32.620 --> 00:12:33.780]   We care about behavior.
+[00:12:33.780 --> 00:12:36.060]   What we're going to do is we're going to take an NFA.
+[00:12:36.060 --> 00:12:38.220]   It's going to decide some language in L-NFA.
+[00:12:38.220 --> 00:12:41.300]   We're going to show that there exists an equivalent DFA
+[00:12:41.300 --> 00:12:42.980]   to that NFA.
+[00:12:42.980 --> 00:12:46.100]   By converting the NFA to a DFA and maintaining
+[00:12:46.100 --> 00:12:49.420]   the correctness of it, we have now
+[00:12:49.420 --> 00:12:52.860]   shown a DFA for this language decidable by some NFA.
+[00:12:52.860 --> 00:12:54.660]   And this process we're going to give,
+[00:12:54.660 --> 00:12:56.380]   because it works for any NFA, we're
+[00:12:56.380 --> 00:12:58.580]   going to be able to convert all the NFAs to DFAs.
+[00:12:58.580 --> 00:13:00.900]   And therefore, they have to be the same.
+[00:13:00.900 --> 00:13:03.780]   We were able to show every DFA was an NFA,
+[00:13:03.780 --> 00:13:06.020]   but we're also going to show that every--
+[00:13:06.020 --> 00:13:08.900]   we're not going to be able to show that every NFA is a DFA,
+[00:13:08.900 --> 00:13:10.420]   because the NFAs look different.
+[00:13:10.420 --> 00:13:12.020]   They have epsilon transitions and other things.
+[00:13:12.020 --> 00:13:14.100]   But we're going to show a way to convert this.
+[00:13:14.100 --> 00:13:17.580]   We're going to go around all these new rules we made,
+[00:13:17.580 --> 00:13:19.900]   using deterministic tricks, basically.
+[00:13:19.900 --> 00:13:22.060]   We're going to show how to do the epsilon transition,
+[00:13:22.060 --> 00:13:26.420]   the implicit reject, and the non-deterministic transition.
+[00:13:26.420 --> 00:13:28.700]   We're going to show how you can do all that, basically,
+[00:13:28.700 --> 00:13:32.740]   with deterministic things.
+[00:13:32.740 --> 00:13:35.580]   Now, as a final comment before we get on to the proof--
+[00:13:35.580 --> 00:13:37.240]   I guess, like, two more final comments.
+[00:13:37.240 --> 00:13:40.060]   One, this doesn't say anything about efficiency.
+[00:13:40.060 --> 00:13:43.820]   So the NFAs are far more efficient than the DFAs.
+[00:13:43.820 --> 00:13:45.900]   The NFAs are small and tiny, and you
+[00:13:45.900 --> 00:13:48.240]   can do nice things with them because they're so small.
+[00:13:48.240 --> 00:13:51.100]   But the DFAs maybe are big and ugly.
+[00:13:51.100 --> 00:13:53.100]   We don't care about efficiency at all.
+[00:13:53.100 --> 00:13:54.300]   We care about power.
+[00:13:54.300 --> 00:13:56.460]   So we're concerned with the possible languages which
+[00:13:56.460 --> 00:13:58.580]   are decidable by these machines at all.
+[00:13:58.580 --> 00:14:00.540]   Like, what are they even capable of?
+[00:14:00.540 --> 00:14:02.900]   So the reason I'm mentioning this
+[00:14:02.900 --> 00:14:05.580]   is because we're going to give-- given some NFA,
+[00:14:05.580 --> 00:14:07.100]   we're going to construct a DFA.
+[00:14:07.100 --> 00:14:10.180]   The DFA is going to be exponentially larger in space.
+[00:14:10.180 --> 00:14:13.100]   The size of the NFA is going to be much, much bigger.
+[00:14:13.100 --> 00:14:15.300]   Excuse me, the DFA is going to be much, much bigger.
+[00:14:15.300 --> 00:14:17.260]   The DFA is going to be much, much uglier.
+[00:14:17.260 --> 00:14:18.140]   But that's OK.
+[00:14:18.140 --> 00:14:20.260]   We don't care about how efficient it is.
+[00:14:20.260 --> 00:14:22.420]   We just care that the DFA exists at all.
+[00:14:22.420 --> 00:14:24.220]   We're concerned with the existence
+[00:14:24.220 --> 00:14:26.820]   of computers for these problems and not the problems
+[00:14:26.820 --> 00:14:27.780]   themselves, yes.
+[00:14:27.780 --> 00:14:30.820]   Is it more efficient because of the assumption
+[00:14:30.820 --> 00:14:35.740]   that multiple processes can't be computed instantaneously?
+[00:14:35.740 --> 00:14:39.300]   Like, if you go by the VFS and then you say,
+[00:14:39.300 --> 00:14:42.940]   the VFS takes, like, oh, man, then
+[00:14:42.940 --> 00:14:45.100]   it wouldn't be more efficient, right?
+[00:14:45.100 --> 00:14:45.600]   Or--
+[00:14:45.600 --> 00:14:52.460]   This question, I think, will be answered during the proof,
+[00:14:52.460 --> 00:14:54.180]   as you see why we convert the thing.
+[00:14:54.180 --> 00:14:55.980]   It's really-- the heart of it is that you're
+[00:14:55.980 --> 00:14:57.660]   in multiple positions at once.
+[00:14:57.660 --> 00:14:58.820]   You can do multiple things.
+[00:14:58.820 --> 00:15:00.980]   So kind of through the VFS.
+[00:15:00.980 --> 00:15:02.300]   You have a question?
+[00:15:02.300 --> 00:15:05.980]   When you wrote, could there exist a language in curly L,
+[00:15:05.980 --> 00:15:09.300]   NFA, backslash--
+[00:15:09.300 --> 00:15:10.940]   That is set minus.
+[00:15:10.940 --> 00:15:13.340]   So in NFA, but not in LDFA.
+[00:15:13.340 --> 00:15:16.420]   So you said that that's not true.
+[00:15:16.420 --> 00:15:18.100]   Yes, so the answer--
+[00:15:18.100 --> 00:15:19.420]   I put two questions on here.
+[00:15:19.420 --> 00:15:22.580]   The answer to both of these--
+[00:15:22.580 --> 00:15:23.980]   no.
+[00:15:23.980 --> 00:15:25.940]   Yes.
+[00:15:25.940 --> 00:15:29.380]   So a narrative of this class is we're
+[00:15:29.380 --> 00:15:31.060]   trying to build a computer.
+[00:15:31.060 --> 00:15:32.460]   And we're trying to actually build
+[00:15:32.460 --> 00:15:34.020]   a reasonable model of computation,
+[00:15:34.020 --> 00:15:35.820]   like one that captures our intuitive notion
+[00:15:35.820 --> 00:15:36.740]   of computation.
+[00:15:36.740 --> 00:15:37.740]   We started with the DFA.
+[00:15:37.740 --> 00:15:39.460]   We noted it might be weak.
+[00:15:39.460 --> 00:15:42.300]   We haven't proven it's weak, but we've noted it might be weak.
+[00:15:42.300 --> 00:15:44.100]   And then we generalized it to NFAs.
+[00:15:44.100 --> 00:15:46.420]   And we thought, well, maybe we built a better computer.
+[00:15:46.420 --> 00:15:47.540]   But actually, we haven't.
+[00:15:47.540 --> 00:15:49.700]   It turns out the computer we built was the same.
+[00:15:49.700 --> 00:15:51.280]   So we haven't built a better computer.
+[00:15:51.280 --> 00:15:52.380]   We built the same computer.
+[00:15:52.380 --> 00:16:00.140]   So one more quick comment is actually
+[00:16:00.140 --> 00:16:06.300]   this comes from a paper by Rabban and Scott in 1957.
+[00:16:06.300 --> 00:16:09.500]   And they won a Turing Award for this proof.
+[00:16:09.500 --> 00:16:14.380]   And the award was like 1976 or something like this.
+[00:16:14.380 --> 00:16:16.460]   Just to show you how low the bar was back then,
+[00:16:16.460 --> 00:16:18.420]   you could get a Turing Award for now something
+[00:16:18.420 --> 00:16:21.100]   that's presentable in half of a summer class.
+[00:16:21.100 --> 00:16:23.980]   So computer science has come a long way.
+[00:16:23.980 --> 00:16:27.540]   Actually, I think the Turing Award that a few months ago
+[00:16:27.540 --> 00:16:30.900]   was given to the guy Bob Metcalfe.
+[00:16:30.900 --> 00:16:32.540]   He invented ethernet.
+[00:16:32.540 --> 00:16:37.040]   So really, they give it to a lot of diverse and different fields.
+[00:16:37.040 --> 00:16:39.420]   But it's worth mentioning that the proof we're going to do
+[00:16:39.420 --> 00:16:42.220]   is for these guys a Turing Award because I think that's cool.
+[00:16:42.220 --> 00:16:51.220]   So in a DFA, what is a DFA, essentially?
+[00:16:51.220 --> 00:16:53.260]   If you're at a position in a DFA,
+[00:16:53.260 --> 00:16:56.300]   that corresponds to an English sentence
+[00:16:56.300 --> 00:16:59.340]   of being in some state.
+[00:16:59.340 --> 00:17:04.060]   So a state of a DFA is only reachable
+[00:17:04.060 --> 00:17:05.380]   if certain conditions are met.
+[00:17:06.380 --> 00:17:25.140]   So like-- so if you're here, it's like I saw an A.
+[00:17:25.140 --> 00:17:28.260]   So each state kind of has an understandable way
+[00:17:28.260 --> 00:17:29.980]   of what that state means.
+[00:17:29.980 --> 00:17:32.060]   If I'm at this state here, all that means
+[00:17:32.060 --> 00:17:34.060]   was that I saw an A and then I saw a B.
+[00:17:34.060 --> 00:17:35.980]   So if I'm here, I can do whatever
+[00:17:35.980 --> 00:17:38.980]   I want under the assumptions that I only reach this state
+[00:17:38.980 --> 00:17:41.620]   using an A and using a B. In that sense,
+[00:17:41.620 --> 00:17:45.100]   every state also corresponds to a line of a program
+[00:17:45.100 --> 00:17:47.820]   in a very, very, very limited sense.
+[00:17:47.820 --> 00:17:52.340]   If you had a program code, it was like if--
+[00:17:52.340 --> 00:18:03.620]   I don't know-- word 0 equals A equals A. If word 1
+[00:18:03.620 --> 00:18:09.580]   equals equals equals equals B, this line of code,
+[00:18:09.580 --> 00:18:12.980]   whatever it is, that is only reachable
+[00:18:12.980 --> 00:18:16.660]   if the first two previous conditions were satisfied.
+[00:18:16.660 --> 00:18:18.840]   So a line of code is only reachable--
+[00:18:18.840 --> 00:18:20.260]   if you reach a line of code, there
+[00:18:20.260 --> 00:18:23.140]   are some assumptions you can make about what got you there
+[00:18:23.140 --> 00:18:25.180]   in the first place.
+[00:18:25.180 --> 00:18:26.460]   Similar things with the states.
+[00:18:26.460 --> 00:18:29.460]   The states kind of correspond in a very limited way
+[00:18:29.460 --> 00:18:32.500]   to lines of code in that sense.
+[00:18:32.500 --> 00:18:34.940]   Very, very weakly.
+[00:18:34.940 --> 00:18:39.660]   So if we want to convert an NFA to a DFA,
+[00:18:39.660 --> 00:18:41.700]   in an English understanding, what
+[00:18:41.700 --> 00:18:47.580]   should the states of our DFA correspond to?
+[00:18:47.580 --> 00:18:49.900]   So just to make sure we know what the question is,
+[00:18:49.900 --> 00:19:02.100]   we want to build a DFA to simulate an NFA--
+[00:19:02.100 --> 00:19:06.460]   we'll say N. What should each state of the DFA
+[00:19:06.460 --> 00:19:08.420]   correspond to of the NFA?
+[00:19:08.420 --> 00:19:08.920]   Yes.
+[00:19:08.920 --> 00:19:11.500]   Should it respond to the power set of the states?
+[00:19:11.500 --> 00:19:12.300]   Power set.
+[00:19:12.300 --> 00:19:16.020]   So what does each state correspond to?
+[00:19:16.020 --> 00:19:17.500]   A certain set of sets.
+[00:19:17.500 --> 00:19:18.100]   Right.
+[00:19:18.100 --> 00:19:21.300]   So what would that necessarily correspond to?
+[00:19:21.300 --> 00:19:22.620]   So being in this state--
+[00:19:22.620 --> 00:19:26.300]   Oh, is it like a certain path to an acceptance state
+[00:19:26.300 --> 00:19:28.900]   or a path to a rejection state?
+[00:19:28.900 --> 00:19:29.940]   Right, exactly.
+[00:19:29.940 --> 00:19:32.740]   So the thing with an NFA is you can be in multiple states
+[00:19:32.740 --> 00:19:33.580]   at once, right?
+[00:19:33.580 --> 00:19:39.620]   Something like this.
+[00:19:39.620 --> 00:19:42.220]   You can be in multiple states at once non-deterministically
+[00:19:42.220 --> 00:19:44.260]   in a way you can't do deterministically.
+[00:19:44.260 --> 00:19:47.900]   So however, being in a set of states at the same time,
+[00:19:47.900 --> 00:19:49.900]   you're in a superposition of states.
+[00:19:49.900 --> 00:19:51.260]   What that really means--
+[00:19:51.260 --> 00:19:54.140]   that's still finitely many, though.
+[00:19:54.140 --> 00:19:55.980]   Sure, you can be in two states at once,
+[00:19:55.980 --> 00:19:58.620]   but two is still a finite number of states at once.
+[00:19:58.620 --> 00:20:00.000]   So what we're going to do is we're
+[00:20:00.000 --> 00:20:03.340]   going to create a DFA such that each state of the DFA
+[00:20:03.340 --> 00:20:08.220]   corresponds to being in a subset of this set, a set of states,
+[00:20:08.220 --> 00:20:09.380]   of the NFA.
+[00:20:09.380 --> 00:20:12.820]   And being in the state in an English sentence
+[00:20:12.820 --> 00:20:15.740]   corresponds to I am in these states
+[00:20:15.740 --> 00:20:18.500]   simultaneously in the NFA.
+[00:20:18.500 --> 00:20:20.780]   So if I was in the superposition of those states
+[00:20:20.780 --> 00:20:21.700]   at the same time--
+[00:20:21.700 --> 00:20:25.740]   for example, let's say-- let's call this q0, q1, and q2,
+[00:20:25.740 --> 00:20:26.300]   right?
+[00:20:26.300 --> 00:20:27.300]   Something like this.
+[00:20:27.300 --> 00:20:29.980]   This is like a subset of a bigger NFA.
+[00:20:29.980 --> 00:20:32.460]   Let's say there's something here, right?
+[00:20:32.460 --> 00:20:35.660]   So what I might have in the NFA is if I come here
+[00:20:35.660 --> 00:20:38.580]   and I'm in q1 and q2 simultaneously, what
+[00:20:38.580 --> 00:20:41.580]   I'm going to have is I'm going to have a state here that
+[00:20:41.580 --> 00:20:49.420]   goes like something like that.
+[00:20:49.420 --> 00:20:54.140]   So I go from q0, something like this, to the state 1, 2.
+[00:20:54.140 --> 00:20:55.660]   And 1, 2 here--
+[00:20:55.660 --> 00:20:56.820]   not 12, it's 1, 2.
+[00:20:56.820 --> 00:21:00.420]   1, 2 represents as if I was in the NFA.
+[00:21:00.420 --> 00:21:02.140]   The DFA simulates the NFA.
+[00:21:02.140 --> 00:21:04.500]   It's as if I was in both of those states at once.
+[00:21:04.500 --> 00:21:05.000]   Yes?
+[00:21:05.000 --> 00:21:08.340]   Is this similar to combining two DFAs together,
+[00:21:08.340 --> 00:21:10.220]   where it's like different branches,
+[00:21:10.220 --> 00:21:11.300]   and then you just combine--
+[00:21:11.300 --> 00:21:13.260]   Ah, when we combine the two DFAs together,
+[00:21:13.260 --> 00:21:16.240]   we took the intersection of them, or the union.
+[00:21:16.240 --> 00:21:21.060]   And that was simulating two DFAs on one DFA.
+[00:21:21.060 --> 00:21:22.820]   So we did a simulation there.
+[00:21:22.820 --> 00:21:24.580]   Here we're doing a simulation as well.
+[00:21:24.580 --> 00:21:26.240]   We needed finitely many states.
+[00:21:26.240 --> 00:21:27.580]   So we did the Cartesian product.
+[00:21:27.580 --> 00:21:29.380]   You can think of it like a product of DFAs.
+[00:21:29.380 --> 00:21:31.580]   Or you can think of it like built one DFA
+[00:21:31.580 --> 00:21:34.260]   to simulate as if it was running two DFAs at once.
+[00:21:34.260 --> 00:21:36.100]   We needed the product of the number of states
+[00:21:36.100 --> 00:21:39.420]   in order to simulate as if we were in both positions at once.
+[00:21:39.420 --> 00:21:41.300]   We need one state for any possible position
+[00:21:41.300 --> 00:21:43.940]   we could be in DFA1 or DFA2.
+[00:21:43.940 --> 00:21:46.660]   So in that sense, we needed quadratically more states
+[00:21:46.660 --> 00:21:49.660]   to simulate both DFAs at the same time.
+[00:21:49.660 --> 00:21:53.000]   Here we need exponentially more states
+[00:21:53.000 --> 00:21:55.620]   to simulate where one state corresponds
+[00:21:55.620 --> 00:22:00.140]   to being in a superposition of the possible states.
+[00:22:00.140 --> 00:22:01.820]   So if the NFA is n states, you're
+[00:22:01.820 --> 00:22:04.620]   going to need 2 to the n--
+[00:22:04.620 --> 00:22:08.780]   worst case, 2 to the n states in your DFA.
+[00:22:08.780 --> 00:22:11.100]   So we're going to convert an NFA to a DFA.
+[00:22:11.100 --> 00:22:12.940]   The DFA is going to have exponential blow
+[00:22:12.940 --> 00:22:15.180]   up in the number of states.
+[00:22:15.180 --> 00:22:17.460]   You need the power set of the entire--
+[00:22:17.460 --> 00:22:18.380]   Exactly.
+[00:22:18.380 --> 00:22:21.620]   You need one state to correspond to every possible subset
+[00:22:21.620 --> 00:22:23.460]   of states you could be in the NFA at once.
+[00:22:23.460 --> 00:22:25.460]   You can be in any position at once,
+[00:22:25.460 --> 00:22:28.700]   and there are 2 to the n possible positions.
+[00:22:28.700 --> 00:22:31.900]   So that's part of the efficiency of the NFA blow up.
+[00:22:31.900 --> 00:22:35.020]   It comes from that exponentialness.
+[00:22:35.020 --> 00:22:37.500]   All right, let me just define some notation.
+[00:22:37.500 --> 00:22:49.820]   Yeah, go over here.
+[00:22:50.820 --> 00:22:53.800]   [AUDIO OUT]
+[00:22:53.800 --> 00:23:04.860]   So first off, we need to really handle some of the epsilon-ness.
+[00:23:04.860 --> 00:23:08.460]   So we define this function called reach.
+[00:23:08.460 --> 00:23:11.380]   Reach of a state like Qi is equal--
+[00:23:14.900 --> 00:23:21.900]   where Qi is in some NFA.
+[00:23:21.900 --> 00:23:25.500]   We say reach of Qi is anything reachable from Qi
+[00:23:25.500 --> 00:23:28.380]   through epsilon transitions.
+[00:23:28.380 --> 00:23:40.780]   So the reach of Qi is going to be Qi and any state reachable
+[00:23:40.780 --> 00:23:48.740]   from Qi by epsilon transitions.
+[00:23:52.660 --> 00:24:15.620]   So if we had something like this, the reach of Qi
+[00:24:15.620 --> 00:24:22.980]   is going to be Q1, but then it's also
+[00:24:22.980 --> 00:24:26.180]   going to be anything reachable from Q1 by epsilon transitions.
+[00:24:26.180 --> 00:24:30.860]   So it's going to include Q2, but it's also
+[00:24:30.860 --> 00:24:35.060]   going to include Q3, because you can go to Q3 from Q1
+[00:24:35.060 --> 00:24:37.180]   by epsilon, epsilon.
+[00:24:37.180 --> 00:24:39.780]   Like those flat escalators, you can just take two sequentially,
+[00:24:39.780 --> 00:24:42.020]   and then you're there without having to do any walking.
+[00:24:42.020 --> 00:24:44.900]   So if this was some subset of an NFA,
+[00:24:44.900 --> 00:24:48.420]   and you were at Q1, you could just teleport to Q3
+[00:24:48.420 --> 00:24:52.060]   and resume your computation from there.
+[00:24:52.060 --> 00:24:54.900]   So in some sense, this is like the reach
+[00:24:54.900 --> 00:24:58.060]   is like the deterministic-ish what
+[00:24:58.060 --> 00:25:03.120]   we need to de-non-deterministic-ify the NFA,
+[00:25:03.120 --> 00:25:05.900]   basically.
+[00:25:05.900 --> 00:25:09.860]   So let me give you the process.
+[00:25:09.860 --> 00:25:21.300]   So for NFA n, and we'll name the parts of it, Q, sigma, Q0,
+[00:25:21.300 --> 00:25:29.940]   delta, and F, we build DFA.
+[00:25:35.420 --> 00:25:41.420]   We're going to call this Q prime, sigma prime, Q0 prime,
+[00:25:41.420 --> 00:25:47.020]   delta prime, and F prime.
+[00:25:47.020 --> 00:25:51.780]   So what is going to be Q here?
+[00:25:51.780 --> 00:25:55.020]   So Q prime is going to be what?
+[00:25:55.020 --> 00:26:01.340]   As we mentioned earlier, we want one state per set of states.
+[00:26:01.340 --> 00:26:07.580]   So if the NFA had n states, had states Q,
+[00:26:07.580 --> 00:26:11.540]   what should Q prime be in the DFA?
+[00:26:11.540 --> 00:26:12.740]   [INAUDIBLE]
+[00:26:12.740 --> 00:26:14.500]   Yes.
+[00:26:14.500 --> 00:26:19.220]   We want one state corresponding to the possible subsets.
+[00:26:19.220 --> 00:26:23.780]   Sigma prime, thankfully, is going to stay the same.
+[00:26:23.780 --> 00:26:27.020]   Don't want to mess with anything there.
+[00:26:27.020 --> 00:26:35.660]   Q0 prime-- this one's a little tricky.
+[00:26:35.660 --> 00:26:36.580]   What is Q0 prime?
+[00:26:36.580 --> 00:26:41.780]   If there is only one start state,
+[00:26:41.780 --> 00:26:43.420]   you can just use the same one.
+[00:26:43.420 --> 00:26:45.300]   But if there's multiple, you make a new one.
+[00:26:45.300 --> 00:26:47.700]   So let's just suppose, because the NFA is
+[00:26:47.700 --> 00:26:50.140]   given with one start state, what would
+[00:26:50.140 --> 00:26:51.820]   be the start state of the DFA?
+[00:26:51.820 --> 00:26:53.620]   Again, we can only have one.
+[00:26:53.620 --> 00:26:54.620]   Just give zero.
+[00:26:54.620 --> 00:26:56.260]   Ah.
+[00:26:56.260 --> 00:26:58.580]   Got you.
+[00:26:58.580 --> 00:26:59.180]   Exactly.
+[00:26:59.180 --> 00:27:01.940]   Anything you can-- you can recall for reach.
+[00:27:01.940 --> 00:27:03.580]   You can either start at the start,
+[00:27:03.580 --> 00:27:05.820]   or anything you could jump to and start from there.
+[00:27:05.820 --> 00:27:07.540]   So it's actually not going to be Q0.
+[00:27:07.540 --> 00:27:08.940]   It's going to be the reach of Q0.
+[00:27:08.940 --> 00:27:15.980]   Now here's the hard part.
+[00:27:15.980 --> 00:27:17.100]   How do you define delta?
+[00:27:17.100 --> 00:27:18.740]   So the way we're going to define it
+[00:27:18.740 --> 00:27:21.620]   is, if you're at a set of states,
+[00:27:21.620 --> 00:27:24.100]   if you're at a state in the DFA, that
+[00:27:24.100 --> 00:27:26.380]   is you representing a superposition of states
+[00:27:26.380 --> 00:27:27.660]   in the NFA.
+[00:27:27.660 --> 00:27:31.260]   So you want the transitions going out from your DFA state
+[00:27:31.260 --> 00:27:33.780]   to represent the simulation of the NFA
+[00:27:33.780 --> 00:27:36.300]   as if you were going out from those states.
+[00:27:36.300 --> 00:27:37.940]   So what that means is, let's say we
+[00:27:37.940 --> 00:27:44.580]   were at some single state, like Q1 to QK.
+[00:27:44.580 --> 00:27:47.940]   And it's not necessarily that the states in the transition
+[00:27:47.940 --> 00:27:49.600]   are going to be nicely numbered that way.
+[00:27:49.600 --> 00:27:52.140]   But let's just suppose there is a set of states that way.
+[00:27:52.140 --> 00:27:55.540]   So you go from some state, which is represented
+[00:27:55.540 --> 00:27:58.660]   by a set of states in the NFA.
+[00:27:58.660 --> 00:28:01.300]   So we're at some state represented by Q1 to QK.
+[00:28:01.300 --> 00:28:07.540]   And you see a symbol A. What you want to do
+[00:28:07.540 --> 00:28:12.180]   is go to the state represented by this superposition
+[00:28:12.180 --> 00:28:16.180]   of the possible states you could have been in the NFA.
+[00:28:16.180 --> 00:28:20.060]   So what this is going to be is going to be the union
+[00:28:20.060 --> 00:28:22.780]   of the set of states you could be in that way.
+[00:28:22.780 --> 00:28:27.940]   So we're going to call this the union of K equals 1 to-- oh,
+[00:28:27.940 --> 00:28:36.220]   can't use K. I equals 1 to K. And it's not
+[00:28:36.220 --> 00:28:39.380]   going to be just the transition of the states themselves.
+[00:28:39.380 --> 00:28:41.500]   But it's going to be the reach of those states.
+[00:28:41.500 --> 00:28:52.580]   So it's actually going to be the reach of delta of Qi comma A.
+[00:28:52.580 --> 00:28:56.980]   That may seem like an arduous and long and not clear
+[00:28:56.980 --> 00:28:58.140]   transition function.
+[00:28:58.140 --> 00:29:00.420]   But it will make more sense when we do the example.
+[00:29:00.420 --> 00:29:02.420]   Because it's quite clear when we do the example.
+[00:29:02.420 --> 00:29:02.920]   Yes?
+[00:29:02.920 --> 00:29:06.060]   How can a DFA have multiple start states?
+[00:29:06.060 --> 00:29:08.180]   DFA can't.
+[00:29:08.180 --> 00:29:11.180]   But reach is going to return a set.
+[00:29:11.180 --> 00:29:12.980]   And that set is going to be one state.
+[00:29:12.980 --> 00:29:13.700]   Oh, you're right.
+[00:29:13.700 --> 00:29:15.500]   Because the states are the thing.
+[00:29:15.500 --> 00:29:16.000]   Yeah.
+[00:29:16.000 --> 00:29:17.100]   Right.
+[00:29:17.100 --> 00:29:19.380]   Again, with the example, there's a lot of moving parts.
+[00:29:19.380 --> 00:29:23.340]   Because there's hashed-- there's like apostrophed versions
+[00:29:23.340 --> 00:29:23.980]   of our DFA.
+[00:29:23.980 --> 00:29:25.340]   But then the NFA doesn't have it.
+[00:29:25.340 --> 00:29:27.180]   And then there's elements.
+[00:29:27.180 --> 00:29:29.380]   The states themselves are just sets of states.
+[00:29:29.380 --> 00:29:30.220]   There's a lot of moving on.
+[00:29:30.220 --> 00:29:31.940]   It'll make perfect sense when we do the example, I think.
+[00:29:31.940 --> 00:29:32.500]   Yeah?
+[00:29:32.500 --> 00:29:35.260]   So when we make an NFA, do we want
+[00:29:35.260 --> 00:29:37.980]   it to be as reduced as possible?
+[00:29:37.980 --> 00:29:40.380]   That way, the power set will be as small as possible.
+[00:29:40.380 --> 00:29:42.700]   That's a question of the first kind.
+[00:29:42.700 --> 00:29:45.860]   As long as there exists an NFA, that's good enough.
+[00:29:45.860 --> 00:29:48.060]   We care about the existence of these programs at all.
+[00:29:48.060 --> 00:29:49.460]   Not.
+[00:29:49.460 --> 00:29:50.300]   Not how efficient they are.
+[00:29:50.300 --> 00:29:52.060]   I mean, it would be great for gradeability
+[00:29:52.060 --> 00:29:55.300]   if you turned in something clean.
+[00:29:55.300 --> 00:29:57.980]   But it doesn't matter.
+[00:29:57.980 --> 00:30:02.420]   Really, the fact that it exists at all is phenomenal.
+[00:30:02.420 --> 00:30:04.340]   And we have one last thing.
+[00:30:04.340 --> 00:30:08.420]   What do we want our final states to look like?
+[00:30:08.420 --> 00:30:12.500]   Is it just the set of all sets that are--
+[00:30:12.500 --> 00:30:14.580]   of all states that are accepting?
+[00:30:14.580 --> 00:30:19.380]   The set of sets of all sets--
+[00:30:19.380 --> 00:30:19.880]   Wait.
+[00:30:19.880 --> 00:30:20.380]   No, no, no.
+[00:30:20.380 --> 00:30:22.220]   The set of states that are accepting.
+[00:30:22.220 --> 00:30:26.300]   So it'll be a set of states that are accepting.
+[00:30:26.300 --> 00:30:29.460]   And then there will be a corresponding state
+[00:30:29.460 --> 00:30:30.900]   to all of the sets.
+[00:30:30.900 --> 00:30:31.540]   Yes.
+[00:30:31.540 --> 00:30:33.660]   So the reason I ask this is because it's actually
+[00:30:33.660 --> 00:30:35.380]   really hard to write this out in English.
+[00:30:35.380 --> 00:30:37.980]   But everyone, I think, understands what's going on.
+[00:30:37.980 --> 00:30:41.180]   So the mathematical notation I have for this one
+[00:30:41.180 --> 00:30:42.700]   is we have a little f.
+[00:30:42.700 --> 00:30:45.980]   For every subset of the states of the NFA,
+[00:30:45.980 --> 00:30:59.540]   as long as that set contains a final set of the original NFA,
+[00:30:59.540 --> 00:31:00.180]   then we're good.
+[00:31:00.180 --> 00:31:06.940]   Oh, OK.
+[00:31:06.940 --> 00:31:14.380]   So as long as at least one state in the f prime
+[00:31:14.380 --> 00:31:17.100]   is accepting in the NFA, it's fine?
+[00:31:17.100 --> 00:31:18.100]   Yes.
+[00:31:18.100 --> 00:31:29.740]   So if q2 is a final state, every set containing q2 is final.
+[00:31:29.740 --> 00:31:32.300]   Why?
+[00:31:32.300 --> 00:31:35.420]   If you're at some set containing q2,
+[00:31:35.420 --> 00:31:39.980]   you are in the superposition of possible states
+[00:31:39.980 --> 00:31:42.500]   you could be, including q2.
+[00:31:42.500 --> 00:31:46.060]   And that means you're at an accept state.
+[00:31:46.060 --> 00:31:49.380]   So we define the computation, the non-deterministic
+[00:31:49.380 --> 00:31:53.220]   computation, to accept if you hit one accept state.
+[00:31:53.220 --> 00:31:55.780]   So you accept.
+[00:31:55.780 --> 00:31:58.260]   So that's why it's basically as long as it contains one accept
+[00:31:58.260 --> 00:32:00.660]   state.
+[00:32:00.660 --> 00:32:02.620]   Again, kind of difficult to define in English,
+[00:32:02.620 --> 00:32:04.740]   but pretty clear in human words.
+[00:32:04.740 --> 00:32:07.320]   And it's going to make much more sense when we do this example.
+[00:32:07.320 --> 00:32:10.320]   [VIDEO PLAYBACK]
+[00:32:10.320 --> 00:32:13.320]   [HEART BEATING]
+[00:32:13.320 --> 00:32:16.320]   [HEART BEATING]
+[00:32:16.320 --> 00:32:19.320]   [HEART BEATING]
+[00:32:19.320 --> 00:32:22.320]   [HEART BEATING]
+[00:32:22.320 --> 00:32:25.320]   [HEART BEATING]
+[00:32:25.320 --> 00:32:28.320]   [HEART BEATING]
+[00:32:28.320 --> 00:32:31.320]   [END PLAYBACK]
+[00:32:55.120 --> 00:32:57.960]   Let's do the same example we had.
+[00:32:57.960 --> 00:33:00.880]   L something was like--
+[00:33:00.880 --> 00:33:06.760]   W is a word.
+[00:33:06.760 --> 00:33:11.600]   And W ends with AA.
+[00:33:11.600 --> 00:33:18.140]   So as an NFA, what was this?
+[00:33:18.140 --> 00:33:18.920]   This was like--
+[00:33:24.880 --> 00:33:27.000]   It was like something like this.
+[00:33:27.000 --> 00:33:41.360]   Make sure everything is labeled.
+[00:33:54.600 --> 00:34:00.120]   So this was our NFA for L. Now we're
+[00:34:00.120 --> 00:34:02.080]   going to follow the algorithm that we defined
+[00:34:02.080 --> 00:34:03.400]   and give a DFA for it.
+[00:34:03.400 --> 00:34:08.080]   So I have the premonition to know
+[00:34:08.080 --> 00:34:09.400]   how messy this is going to get.
+[00:34:09.400 --> 00:34:12.640]   So I'm actually going to put my circles in a very specific spot.
+[00:34:12.640 --> 00:34:17.860]   We want one state per set of states of the NFA.
+[00:34:17.860 --> 00:34:19.560]   So I'm going to put them in this order.
+[00:34:19.560 --> 00:34:22.560]   [SIDE CONVERSATION]
+[00:34:49.320 --> 00:34:53.520]   So 0, 1, 2 is not really 0, 1, 2,
+[00:34:53.520 --> 00:35:01.240]   but it's the set corresponding to Q0, Q1, Q2.
+[00:35:01.240 --> 00:35:02.640]   I just shortened the notation so I
+[00:35:02.640 --> 00:35:04.720]   don't have to write a set in each element.
+[00:35:04.720 --> 00:35:06.440]   I just can keep the index of the numbers.
+[00:35:06.440 --> 00:35:07.180]   There's three Qs.
+[00:35:07.180 --> 00:35:09.360]   Now I have one Q. First thing to note
+[00:35:09.360 --> 00:35:12.560]   is there's already a lot of states on the board.
+[00:35:12.560 --> 00:35:15.440]   That's like eight states.
+[00:35:15.440 --> 00:35:16.600]   That's eight.
+[00:35:16.600 --> 00:35:17.600]   That's a lot of states.
+[00:35:17.600 --> 00:35:20.480]   Hopefully we won't have to use them all.
+[00:35:20.480 --> 00:35:23.000]   So what is the start state?
+[00:35:23.000 --> 00:35:24.960]   Well, the start state is going to be the start
+[00:35:24.960 --> 00:35:28.160]   state of the NFA plus anything reachable from the start state.
+[00:35:28.160 --> 00:35:30.360]   I'm thankful to have chosen an example that doesn't
+[00:35:30.360 --> 00:35:31.640]   use any epsilon transitions.
+[00:35:31.640 --> 00:35:32.960]   So it might be slightly less informative,
+[00:35:32.960 --> 00:35:34.240]   but it's certainly going to be easier.
+[00:35:34.240 --> 00:35:35.640]   So the start state is going to be
+[00:35:35.640 --> 00:35:37.440]   none other than the start state here
+[00:35:37.440 --> 00:35:38.760]   and anything reachable from it.
+[00:35:38.760 --> 00:35:42.200]   So it's just going to be it.
+[00:35:42.200 --> 00:35:44.280]   What are the final states?
+[00:35:44.280 --> 00:35:49.720]   [INAUDIBLE]
+[00:35:49.720 --> 00:35:50.720]   Anything that has to do--
+[00:35:50.720 --> 00:35:51.800]   Yes, exactly.
+[00:35:51.800 --> 00:35:52.280]   Yes.
+[00:35:52.280 --> 00:35:55.680]   So Q2 is going to be a final state.
+[00:35:55.680 --> 00:35:58.080]   But so will Q12.
+[00:35:58.080 --> 00:36:02.840]   And recall the state Q1, Q2, this state 1, 2 basically
+[00:36:02.840 --> 00:36:06.480]   corresponds to as if you were in the NFA in both Q1 and Q2
+[00:36:06.480 --> 00:36:10.400]   only, just both those states at the same time.
+[00:36:10.400 --> 00:36:16.160]   Same thing with 02 and 012.
+[00:36:16.160 --> 00:36:17.920]   By the way, we have this--
+[00:36:17.920 --> 00:36:21.160]   the empty set is also a set.
+[00:36:21.160 --> 00:36:22.800]   It's really here as our purgatory
+[00:36:22.800 --> 00:36:25.160]   because we have an implicit reject thing.
+[00:36:25.160 --> 00:36:27.240]   That's what the empty set is going to end up being,
+[00:36:27.240 --> 00:36:28.200]   the empty set state.
+[00:36:28.200 --> 00:36:34.880]   And also, if each state is being in that set of states
+[00:36:34.880 --> 00:36:39.680]   at the same time, what does the empty set state correspond to?
+[00:36:39.680 --> 00:36:45.120]   [INAUDIBLE]
+[00:36:45.120 --> 00:36:46.680]   Being in none of the states?
+[00:36:46.680 --> 00:36:47.440]   Yeah.
+[00:36:47.440 --> 00:36:49.320]   I don't really know what that means, though.
+[00:36:49.320 --> 00:36:50.040]   But you're right.
+[00:36:50.040 --> 00:36:53.160]   If you're in-- under our English word understanding
+[00:36:53.160 --> 00:36:56.080]   of this state corresponds to being
+[00:36:56.080 --> 00:36:58.960]   in the set of those states in the NFA at the same time,
+[00:36:58.960 --> 00:37:02.480]   being in the empty set means I'm in that set of states
+[00:37:02.480 --> 00:37:04.000]   of the NFA at the same time, which
+[00:37:04.000 --> 00:37:07.400]   means I'm in none of the states at the same time.
+[00:37:07.400 --> 00:37:09.120]   That almost doesn't make sense.
+[00:37:09.120 --> 00:37:10.240]   But it turns out to work--
+[00:37:10.240 --> 00:37:11.660]   it's going to work out quite nicely
+[00:37:11.660 --> 00:37:14.360]   because our transition function is also defined for a union.
+[00:37:14.360 --> 00:37:15.940]   Union with the empty set does nothing.
+[00:37:15.940 --> 00:37:17.560]   So it's perfect, actually.
+[00:37:17.560 --> 00:37:21.120]   This is going to end up being our implicit reject state.
+[00:37:21.120 --> 00:37:23.240]   All the garbage is going to go to here.
+[00:37:23.240 --> 00:37:24.680]   By the way, if you're in--
+[00:37:24.680 --> 00:37:26.000]   let's just do this one now.
+[00:37:26.000 --> 00:37:29.800]   If you're at none of the states at the same time,
+[00:37:29.800 --> 00:37:31.840]   where can you go if you see an A?
+[00:37:31.840 --> 00:37:33.680]   Where can you go if you see a B?
+[00:37:33.680 --> 00:37:35.360]   [INAUDIBLE]
+[00:37:35.360 --> 00:37:36.720]   Nowhere, exactly.
+[00:37:36.720 --> 00:37:39.800]   So we'll just get that one out the way.
+[00:37:39.800 --> 00:37:42.360]   That's our little purgatory.
+[00:37:42.360 --> 00:37:46.200]   OK, so let's say you're in Q0 and you see an A.
+[00:37:46.200 --> 00:37:48.200]   Where can you go?
+[00:37:48.200 --> 00:37:53.200]   You can either go to Q0, stay in Q0, or you can go to Q1.
+[00:37:53.200 --> 00:37:55.680]   So we take the union of those, and what we say
+[00:37:55.680 --> 00:37:57.440]   is that we go to 0, 1.
+[00:38:00.480 --> 00:38:05.080]   If you're in Q0 and you see a B, you can only go to Q0.
+[00:38:05.080 --> 00:38:13.460]   So we're going to go state by state,
+[00:38:13.460 --> 00:38:15.200]   and now there's exponentially more states.
+[00:38:15.200 --> 00:38:18.240]   So thank god I also chose an NFA of three states.
+[00:38:18.240 --> 00:38:21.520]   If I had an NFA of four states, I would have to do 16 states.
+[00:38:21.520 --> 00:38:24.180]   So that's already too much.
+[00:38:24.180 --> 00:38:26.720]   We're going to go state by state and draw the outgoing two
+[00:38:26.720 --> 00:38:29.120]   transitions per state.
+[00:38:29.120 --> 00:38:33.040]   If I'm at state 0 and 1 simultaneously and I see an A,
+[00:38:33.040 --> 00:38:38.000]   I could either go to A, I could go to 0, I could go to 1,
+[00:38:38.000 --> 00:38:40.200]   or if I'm at 1, I could go to 2.
+[00:38:40.200 --> 00:38:47.640]   So that means I can go to 0, 1, or 2 if I'm at 0, 1 and I see an A.
+[00:38:47.640 --> 00:38:50.880]   If I'm at 0, 1 and I see a B, where can I go?
+[00:38:50.880 --> 00:38:52.840]   This is going to reject.
+[00:38:52.840 --> 00:38:55.000]   This is going to go to Q0.
+[00:38:55.000 --> 00:38:58.720]   So Q0 union the empty set is going to give me Q0.
+[00:38:58.720 --> 00:39:10.240]   If I'm at Q-- so 0 is defined, 0, 1 is defined.
+[00:39:10.240 --> 00:39:13.920]   If I'm at all three states simultaneously and I see an A,
+[00:39:13.920 --> 00:39:14.880]   where can I go?
+[00:39:14.880 --> 00:39:19.400]   I can go to-- if I'm at Q0, Q1, or Q2 at the same time, if I see an A,
+[00:39:19.400 --> 00:39:21.320]   I can go to Q0, Q1, or Q2.
+[00:39:21.320 --> 00:39:21.820]   OK.
+[00:39:22.220 --> 00:39:32.860]   If I'm at Q0, Q1, and Q2 and I see a B, these are going to reject if I see a B.
+[00:39:32.860 --> 00:39:34.900]   But here I'm going to stay in Q0.
+[00:39:34.900 --> 00:39:36.300]   So this is going to be 0.
+[00:39:36.300 --> 00:39:42.020]   I see a B, and I'll draw it above.
+[00:39:42.020 --> 00:39:47.540]   OK.
+[00:39:47.540 --> 00:39:48.580]   Now we do the other ones.
+[00:39:48.580 --> 00:39:59.420]   If I'm at Q1 by itself and I see an A, I'm going to go to Q2 on only Q2.
+[00:39:59.420 --> 00:40:02.540]   If I'm at Q1 and I see a B, this was an implicit reject.
+[00:40:02.540 --> 00:40:04.220]   So we get to use our purgatory.
+[00:40:04.220 --> 00:40:11.820]   If I'm at Q2 and I see an A or a B, I implicitly reject.
+[00:40:11.820 --> 00:40:13.060]   So here I can just do--
+[00:40:18.540 --> 00:40:24.620]   now we have two more states to do.
+[00:40:24.620 --> 00:40:32.100]   If we're at state 1, 2, we're at 1 and 2 simultaneously,
+[00:40:32.100 --> 00:40:37.540]   we can go to Q2 or nothing.
+[00:40:37.540 --> 00:40:38.500]   So it's going to be Q2.
+[00:40:38.500 --> 00:40:46.860]   We see an A. If we see a B, we have no choice
+[00:40:46.860 --> 00:40:50.020]   but to implicitly reject from both of these.
+[00:40:50.020 --> 00:40:55.980]   OK.
+[00:40:55.980 --> 00:40:58.740]   Now what if we're at 0, 2 simultaneously?
+[00:40:58.740 --> 00:41:01.500]   We're in a superposition of 0 and 2 at the same time.
+[00:41:01.500 --> 00:41:05.140]   If we see an A and we're at 0, 2, this is going to reject,
+[00:41:05.140 --> 00:41:07.340]   but this is going to put us in 0, 1.
+[00:41:07.340 --> 00:41:15.180]   We see an A.
+[00:41:15.180 --> 00:41:18.820]   If we're at 0, 2 and we see a B, this is going to reject,
+[00:41:18.820 --> 00:41:21.100]   but this is going to keep us in B.
+[00:41:21.100 --> 00:41:23.860]   So 1, A, 0?
+[00:41:23.860 --> 00:41:24.360]   Yes.
+[00:41:24.360 --> 00:41:33.580]   So we did these states.
+[00:41:33.580 --> 00:41:36.140]   We did the alphabet is the same.
+[00:41:36.140 --> 00:41:37.180]   We did the start state.
+[00:41:37.180 --> 00:41:38.500]   We did the transition function.
+[00:41:38.500 --> 00:41:39.700]   And we did the final states.
+[00:41:39.700 --> 00:41:44.180]   So this is now our DFA, which simulates this NFA.
+[00:41:44.180 --> 00:41:46.860]   But this DFA has some problems, kind of.
+[00:41:46.860 --> 00:41:48.020]   They're not really problems.
+[00:41:48.020 --> 00:41:49.660]   This is still a correct DFA.
+[00:41:49.660 --> 00:41:51.860]   But if in terms of a graph, what would you
+[00:41:51.860 --> 00:41:53.980]   say this DFA has a property of?
+[00:41:53.980 --> 00:41:56.420]   They're like unconnected components.
+[00:41:56.420 --> 00:41:56.920]   Yes.
+[00:41:56.920 --> 00:41:57.500]   And possibly--
+[00:41:57.500 --> 00:41:58.180]   Unconnected.
+[00:41:58.180 --> 00:42:01.340]   I was going to say disconnected, but unconnected is also
+[00:42:01.340 --> 00:42:02.900]   totally correct, I guess.
+[00:42:02.900 --> 00:42:05.100]   Yeah, this whole part is unreachable.
+[00:42:05.100 --> 00:42:06.540]   These four states are unreachable.
+[00:42:06.540 --> 00:42:09.900]   And in fact, not only are these states unreachable, Q02
+[00:42:09.900 --> 00:42:11.900]   is unreachable.
+[00:42:11.900 --> 00:42:12.900]   There's no entry.
+[00:42:12.900 --> 00:42:13.860]   It's not a start state.
+[00:42:13.860 --> 00:42:16.140]   So you can't enter into 02.
+[00:42:16.140 --> 00:42:19.060]   What this means in human words, like back
+[00:42:19.060 --> 00:42:22.620]   to our English understanding of the simulation,
+[00:42:22.620 --> 00:42:26.540]   since 1 is unreachable, 1 has no incoming arrows,
+[00:42:26.540 --> 00:42:29.660]   it's impossible in our NFA to be in state 1
+[00:42:29.660 --> 00:42:33.340]   simultaneously, just to be in state 1 by itself.
+[00:42:33.340 --> 00:42:35.660]   If you're ever in state 1 in the NFA,
+[00:42:35.660 --> 00:42:37.100]   you're also in some other state.
+[00:42:37.100 --> 00:42:39.580]   You're also in-- you're either in anything
+[00:42:39.580 --> 00:42:41.500]   that's reachable from the start state.
+[00:42:41.500 --> 00:42:43.300]   We can disregard this whole part.
+[00:42:43.300 --> 00:42:44.620]   We can cut this off.
+[00:42:44.620 --> 00:42:47.540]   We can also cut off 02 here.
+[00:42:47.540 --> 00:42:50.220]   If I were to cut those off and rewrite the DFA,
+[00:42:50.220 --> 00:42:51.420]   I'm going to rewrite it here.
+[00:42:51.420 --> 00:42:54.260]   So this is the NFA.
+[00:42:54.260 --> 00:42:55.780]   I'm going to rewrite the DFA here.
+[00:42:55.780 --> 00:42:59.260]   [AUDIO OUT]
+[00:42:59.260 --> 00:43:02.260]   [AUDIO OUT]
+[00:43:02.260 --> 00:43:05.260]   [AUDIO OUT]
+[00:43:05.260 --> 00:43:08.260]   [AUDIO OUT]
+[00:43:08.260 --> 00:43:11.260]   [AUDIO OUT]
+[00:43:11.260 --> 00:43:37.760]   OK.
+[00:43:37.760 --> 00:43:38.860]   Yeah, that's it.
+[00:43:38.860 --> 00:43:39.360]   Oh.
+[00:43:39.360 --> 00:43:46.220]   So notice that this DFA, when we trimmed the FAT,
+[00:43:46.220 --> 00:43:48.020]   is exactly the DFA that we gave before.
+[00:43:48.020 --> 00:43:52.740]   That's exactly the DFA that we gave originally,
+[00:43:52.740 --> 00:43:55.140]   when we gave one NFA and one DFA to compare.
+[00:43:55.140 --> 00:43:58.420]   They ended up being the same.
+[00:43:58.420 --> 00:44:00.540]   In general, it's not-- so this process does not
+[00:44:00.540 --> 00:44:02.180]   give you anything like a minimal DFA
+[00:44:02.180 --> 00:44:04.260]   or anything close to anything nice.
+[00:44:04.260 --> 00:44:06.220]   But that doesn't matter.
+[00:44:06.220 --> 00:44:09.660]   What we care about is that this process gives you a DFA at all.
+[00:44:09.660 --> 00:44:11.180]   So we have a DFA.
+[00:44:11.180 --> 00:44:11.940]   Awesome.
+[00:44:11.940 --> 00:44:15.740]   We were able to convert any NFA to a DFA.
+[00:44:15.740 --> 00:44:17.700]   We were also able to clean it up at the end
+[00:44:17.700 --> 00:44:21.100]   and get something else out of it, which is good for us, I guess.
+[00:44:21.100 --> 00:44:24.020]   If we actually cared about simplifying a DFA,
+[00:44:24.020 --> 00:44:28.820]   if we actually cared what the DFA was, this is what we get.
+[00:44:28.820 --> 00:44:31.180]   Here's a big picture idea from the course, though.
+[00:44:31.180 --> 00:44:32.820]   We don't care.
+[00:44:32.820 --> 00:44:35.500]   We don't care about actually running this algorithm
+[00:44:35.500 --> 00:44:39.100]   to determine DFAs from specific NFAs.
+[00:44:39.100 --> 00:44:42.140]   We care that there exists an algorithm at all
+[00:44:42.140 --> 00:44:47.420]   to convert NFAs to DFAs.
+[00:44:47.420 --> 00:44:48.420]   [VIDEO PLAYBACK]
+[00:44:48.420 --> 00:44:52.400]   [END PLAYBACK]
+[00:44:52.400 --> 00:44:55.380]   [VIDEO PLAYBACK]
+[00:44:55.380 --> 00:44:58.380]   [END PLAYBACK]
+[00:44:58.380 --> 00:45:01.380]   [VIDEO PLAYBACK]
+[00:45:01.380 --> 00:45:04.380]   [END PLAYBACK]
+[00:45:04.380 --> 00:45:07.380]   [VIDEO PLAYBACK]
+[00:45:07.380 --> 00:45:10.380]   [END PLAYBACK]
+[00:45:10.380 --> 00:45:13.380]   [VIDEO PLAYBACK]
+[00:45:14.380 --> 00:45:17.380]   [VIDEO PLAYBACK]
+[00:45:17.380 --> 00:45:20.380]   [END PLAYBACK]
+[00:45:20.380 --> 00:45:23.380]   [VIDEO PLAYBACK]
+[00:45:23.380 --> 00:45:26.380]   [END PLAYBACK]
+[00:45:48.180 --> 00:45:50.700]   So we don't care about the algorithm itself.
+[00:45:50.700 --> 00:45:53.340]   We don't care about converting things, NFAs to DFAs.
+[00:45:53.340 --> 00:45:54.980]   We care that the algorithm exists.
+[00:45:54.980 --> 00:45:56.900]   We care that there does exist a process
+[00:45:56.900 --> 00:46:00.540]   to convert any NFA into a DFA, and that an NFA,
+[00:46:00.540 --> 00:46:03.340]   although a non-deterministic and compact object,
+[00:46:03.340 --> 00:46:06.000]   can be deterministically simulated, still
+[00:46:06.000 --> 00:46:07.300]   with finitely many states.
+[00:46:07.300 --> 00:46:09.700]   We're still good to go in that part.
+[00:46:09.700 --> 00:46:22.740]   So if, like L is in LNFA, there exists NFA N to-- NFA N,
+[00:46:22.740 --> 00:46:29.140]   we'll say, such that the language decided by the NFA
+[00:46:29.140 --> 00:46:30.220]   is the language.
+[00:46:30.220 --> 00:46:34.300]   The NFA decides that language because it's an LNFA.
+[00:46:34.300 --> 00:46:54.500]   Since we can give an equivalent DFA for any NFA,
+[00:46:54.500 --> 00:47:08.820]   we convert NFA N to DFA, say, D. So now there
+[00:47:08.820 --> 00:47:23.500]   exists a DFA named D to decide language L.
+[00:47:23.500 --> 00:47:30.580]   So L is in L DFA.
+[00:47:30.580 --> 00:47:33.860]   L being decidable by an NFA, we can convert any NFA to a DFA.
+[00:47:33.860 --> 00:47:36.220]   L is now decidable by a DFA.
+[00:47:36.220 --> 00:47:53.180]   Since this is true for any L in LNFA,
+[00:47:53.180 --> 00:48:02.740]   we conclude that LNFA is a subset of L DFA.
+[00:48:07.420 --> 00:48:22.540]   Since we previously know the reverse inclusion,
+[00:48:22.540 --> 00:48:30.460]   we see that L DFA--
+[00:48:30.460 --> 00:48:31.060]   oh, my god.
+[00:48:31.060 --> 00:48:43.900]   [CHUCKLES]
+[00:48:43.900 --> 00:48:49.140]   We see that L DFA is equal to L NFA.
+[00:48:49.140 --> 00:48:54.740]   So the NFAs are exactly as powerful as the DFAs.
+[00:48:54.740 --> 00:48:55.240]   Yes?
+[00:48:55.240 --> 00:48:59.620]   -How do you handle the epsilon, like the free transition?
+[00:48:59.620 --> 00:49:01.060]   -Oh, we did that with the reach.
+[00:49:01.060 --> 00:49:03.300]   So the example didn't have that because it
+[00:49:03.300 --> 00:49:04.940]   gets complicated and messy.
+[00:49:04.940 --> 00:49:09.580]   But by doing reach, we get rid of the epsilons.
+[00:49:09.580 --> 00:49:14.740]   So we don't just go to the state, the union of the states.
+[00:49:14.740 --> 00:49:16.260]   We go to the union of the states,
+[00:49:16.260 --> 00:49:18.580]   and those are also reachable by the epsilon transition.
+[00:49:18.580 --> 00:49:26.940]   -OK, so I'm assuming like reach of-- is that delta?
+[00:49:26.940 --> 00:49:30.420]   -Reach of delta not primed QIA.
+[00:49:30.420 --> 00:49:34.100]   -Yeah, so that would be like the reach of the state
+[00:49:34.100 --> 00:49:35.380]   if there's an A, right?
+[00:49:35.380 --> 00:49:37.180]   Or is it just the reach of the state?
+[00:49:37.180 --> 00:49:39.900]   -Whatever we would-- so QIA is going
+[00:49:39.900 --> 00:49:43.300]   to be something from the NFA.
+[00:49:43.300 --> 00:49:46.180]   We're going to have-- we're going to-- anything reachable
+[00:49:46.180 --> 00:49:47.820]   from that state in the NFA.
+[00:49:47.820 --> 00:49:50.540]   -OK, so even if there's like an epsilon, it'll be covered in--
+[00:49:50.540 --> 00:49:51.260]   -Exactly.
+[00:49:51.260 --> 00:49:53.300]   We count that as part of the union.
+[00:49:53.300 --> 00:50:04.020]   Because like-- you do this, you can go to here,
+[00:50:04.020 --> 00:50:05.220]   or you can go to the end.
+[00:50:05.220 --> 00:50:06.460]   And that reach covers both.
+[00:50:06.460 --> 00:50:09.060]   So that would be covered in your union, necessarily.
+[00:50:09.060 --> 00:50:09.820]   -Thank you.
+[00:50:09.820 --> 00:50:10.500]   -Good question.
+[00:50:10.500 --> 00:50:11.000]   Yes?
+[00:50:11.000 --> 00:50:15.780]   -Is the empty set state having like self-transitions
+[00:50:15.780 --> 00:50:17.500]   for all transitions?
+[00:50:17.500 --> 00:50:19.540]   Is that always the case in this algorithm?
+[00:50:19.540 --> 00:50:20.180]   -Yeah.
+[00:50:20.180 --> 00:50:22.060]   Because we have an implicit reject.
+[00:50:22.060 --> 00:50:22.560]   -Right.
+[00:50:22.560 --> 00:50:27.980]   -So we need to just add it explicitly.
+[00:50:27.980 --> 00:50:30.860]   And having more than one reject state doesn't really matter.
+[00:50:30.860 --> 00:50:33.820]   Like having two different shortcuts to the garbage bin,
+[00:50:33.820 --> 00:50:36.820]   you can just have one shortcut to the garbage bin.
+[00:50:36.820 --> 00:50:39.300]   So it's enough that we have one.
+[00:50:39.300 --> 00:50:41.660]   It's convenient, certainly.
+[00:50:41.660 --> 00:50:43.200]   OK, any more questions on this proof?
+[00:50:43.200 --> 00:50:48.740]   We've now proven that the NFAs are exact in power
+[00:50:48.740 --> 00:50:49.860]   than the DFAs.
+[00:50:49.860 --> 00:50:52.500]   We failed to generalize our DFAs.
+[00:50:52.500 --> 00:50:53.000]   Yes?
+[00:50:53.000 --> 00:50:54.860]   -This isn't a question about the topic,
+[00:50:54.860 --> 00:50:58.260]   but is it fine if we prove something in class,
+[00:50:58.260 --> 00:51:00.140]   and then we just repeat it in a proof?
+[00:51:00.140 --> 00:51:01.640]   We don't need to reprove anything.
+[00:51:01.640 --> 00:51:02.140]   -Yeah.
+[00:51:02.140 --> 00:51:03.300]   Yeah, yeah, yeah.
+[00:51:03.300 --> 00:51:05.820]   Certainly.
+[00:51:05.820 --> 00:51:08.260]   So again, I want to stress this because the point--
+[00:51:08.260 --> 00:51:10.760]   and other people who teach this class might do it differently.
+[00:51:10.760 --> 00:51:14.460]   I don't care that you know how to convert a DFA to an NFA--
+[00:51:14.460 --> 00:51:16.260]   excuse me, an NFA to a DFA.
+[00:51:16.260 --> 00:51:18.220]   That's not the importance of the algorithm.
+[00:51:18.220 --> 00:51:20.980]   The importance of the algorithm is that it takes only a finite--
+[00:51:20.980 --> 00:51:22.820]   exponential-- if you have a number,
+[00:51:22.820 --> 00:51:25.380]   and you take two to that number, you still only have finitely
+[00:51:25.380 --> 00:51:27.460]   many-- that's still finite.
+[00:51:27.460 --> 00:51:31.860]   So you can simulate an NFA deterministically
+[00:51:31.860 --> 00:51:34.380]   only using finitely many more states.
+[00:51:34.380 --> 00:51:35.540]   That's the important part.
+[00:51:35.540 --> 00:51:38.580]   It needs exponentially more, but finite-- that's still finite.
+[00:51:38.580 --> 00:51:43.100]   So you still need finitely many states in order to do this.
+[00:51:43.100 --> 00:51:43.780]   Yes?
+[00:51:43.780 --> 00:51:47.260]   -What's the importance of DFAs?
+[00:51:47.260 --> 00:51:53.300]   So we just proved that the language--
+[00:51:53.300 --> 00:51:58.460]   I mean, regular languages are modeled by both DFAs and NFAs.
+[00:51:58.460 --> 00:52:00.140]   -Yes.
+[00:52:00.140 --> 00:52:02.500]   -Is that the end?
+[00:52:02.500 --> 00:52:04.500]   -So regular languages in two ways.
+[00:52:04.500 --> 00:52:06.420]   First off, they're a toy computational model.
+[00:52:06.420 --> 00:52:09.380]   They're very weak, and they're very easy to study in that sense.
+[00:52:09.380 --> 00:52:11.500]   They're very easy to describe and give.
+[00:52:11.500 --> 00:52:13.220]   The other idea is that now, if you
+[00:52:13.220 --> 00:52:14.920]   need to talk about the regular languages,
+[00:52:14.920 --> 00:52:17.580]   it's sufficient for you to talk about the NFAs safely.
+[00:52:17.580 --> 00:52:20.460]   Because we proved that every NFA is also a DFA,
+[00:52:20.460 --> 00:52:21.760]   you don't have to give the DFA.
+[00:52:21.760 --> 00:52:23.700]   You don't have to do this defined--
+[00:52:23.700 --> 00:52:25.700]   like I mentioned earlier, I like writing programs
+[00:52:25.700 --> 00:52:27.780]   with undefined behavior because I'm lazy.
+[00:52:27.780 --> 00:52:31.020]   I don't want to do all this try-catch nonsense.
+[00:52:31.020 --> 00:52:31.860]   Same way here.
+[00:52:31.860 --> 00:52:34.580]   Now you can freely-- maybe you're
+[00:52:34.580 --> 00:52:37.020]   trying to give a DFA for something.
+[00:52:37.020 --> 00:52:39.460]   Maybe you now can just start using epsilon transitions
+[00:52:39.460 --> 00:52:41.140]   and non-deterministic behavior.
+[00:52:41.140 --> 00:52:42.820]   You now have tools in your repertoire
+[00:52:42.820 --> 00:52:44.620]   in order to write these kinds of programs if you want it.
+[00:52:44.620 --> 00:52:45.220]   Yes?
+[00:52:45.220 --> 00:52:46.820]   -But there are other types of machines
+[00:52:46.820 --> 00:52:48.220]   that can compute more things than--
+[00:52:48.220 --> 00:52:49.060]   -Yeah, certainly.
+[00:52:49.060 --> 00:52:49.580]   Absolutely.
+[00:52:49.580 --> 00:52:50.300]   Absolutely.
+[00:52:50.300 --> 00:52:52.220]   And we will explore that next time.
+[00:52:52.220 --> 00:52:54.980]   So next time we're going to talk about closure properties.
+[00:52:54.980 --> 00:52:58.100]   I think you mentioned last time about the complement
+[00:52:58.100 --> 00:52:59.980]   of the states of the DFA.
+[00:52:59.980 --> 00:53:02.220]   By the way, the complement of the states of the NFA
+[00:53:02.220 --> 00:53:04.800]   is not the complement of the language of the NFA
+[00:53:04.800 --> 00:53:06.600]   because there's an implicit reject state.
+[00:53:06.600 --> 00:53:08.100]   So we'll talk about that next time.
+[00:53:08.100 --> 00:53:09.620]   We'll also talk about how to prove
+[00:53:09.620 --> 00:53:11.660]   using some combinatorial arguments that there
+[00:53:11.660 --> 00:53:13.980]   exist languages which are not regular.
+[00:53:13.980 --> 00:53:16.060]   We kind of loosely said, OK, finitely many states,
+[00:53:16.060 --> 00:53:18.500]   you can only keep track of finitely many things.
+[00:53:18.500 --> 00:53:20.620]   There are some languages you can't decide.
+[00:53:20.620 --> 00:53:25.340]   We'll formally and rigorously prove that next time.
+[00:53:25.340 --> 00:53:27.060]   But that's all I have for you today.
+[00:53:27.060 --> 00:53:28.820]   I'm around if you guys have any questions.
+[00:53:28.820 --> 00:53:30.540]   Your homework is going to go out tomorrow.
+[00:53:30.540 --> 00:53:32.500]   And it'll be due in a week.
+[00:53:32.500 --> 00:53:34.660]   So great.
+
